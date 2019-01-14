@@ -5,9 +5,11 @@
  */
 
 /**
- *
- * @author jalac9997
+ * Jacob L
+ * 
  */
+import java.io.*;
+
 public class wwwCreation extends javax.swing.JFrame {
 
     /**
@@ -41,7 +43,7 @@ public class wwwCreation extends javax.swing.JFrame {
         backgroundPanel.setBackground(new java.awt.Color(255, 255, 204));
 
         newButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        newButton.setText("NEW");
+        newButton.setText("CLEAR");
         newButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 newButtonActionPerformed(evt);
@@ -57,15 +59,17 @@ public class wwwCreation extends javax.swing.JFrame {
         titleLabel.setFont(new java.awt.Font("Vivaldi", 1, 24)); // NOI18N
         titleLabel.setText("WWW -The Harry Potter Roleplaying Game");
 
-        subtitleLabel.setFont(new java.awt.Font("Ti83pc", 1, 18)); // NOI18N
+        subtitleLabel.setFont(new java.awt.Font("Tekton Pro Ext", 1, 18)); // NOI18N
         subtitleLabel.setText("Quick Character Creator");
 
         characterNameLabel.setFont(new java.awt.Font("Tekton Pro Ext", 0, 18)); // NOI18N
         characterNameLabel.setText("Character Name:");
 
-        instructionsTextArea.setColumns(20);
+        instructionsTextArea.setColumns(18);
+        instructionsTextArea.setFont(new java.awt.Font("Tekton Pro Ext", 0, 14)); // NOI18N
         instructionsTextArea.setRows(5);
-        instructionsTextArea.setText("Click \"New\" to start. Input your\ncharacter's name, then click \"Start\".\nYour character will be developed in\nthe attached file \"CharDoc1\".");
+        instructionsTextArea.setTabSize(7);
+        instructionsTextArea.setText("Click \"Clear\". Input your character's\nname, then click \"Start\". Your\ncharacter will be developed in the\nattached file \"CharDoc1\".");
         instructionsScollPane.setViewportView(instructionsTextArea);
 
         startButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -86,10 +90,6 @@ public class wwwCreation extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(characterNameInput, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backgroundPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(instructionsScollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(98, 98, 98))
             .addGroup(backgroundPanelLayout.createSequentialGroup()
                 .addGroup(backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(backgroundPanelLayout.createSequentialGroup()
@@ -103,7 +103,10 @@ public class wwwCreation extends javax.swing.JFrame {
                         .addComponent(newButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(backgroundPanelLayout.createSequentialGroup()
                         .addGap(210, 210, 210)
-                        .addComponent(startButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(startButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(backgroundPanelLayout.createSequentialGroup()
+                        .addGap(114, 114, 114)
+                        .addComponent(instructionsScollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
         backgroundPanelLayout.setVerticalGroup(
@@ -121,9 +124,9 @@ public class wwwCreation extends javax.swing.JFrame {
                     .addComponent(characterNameInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(startButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
                 .addComponent(instructionsScollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -144,6 +147,7 @@ public class wwwCreation extends javax.swing.JFrame {
 
     private void newButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newButtonActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_newButtonActionPerformed
 
     private void characterNameInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_characterNameInputActionPerformed
