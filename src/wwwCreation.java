@@ -218,7 +218,7 @@ public class wwwCreation extends javax.swing.JFrame {
             writeFile = new BufferedWriter(out);
 
             //Clear all previous information
-            writeFile.write("");
+            writeFile.write("dank");
             
             //Close
             writeFile.close();
