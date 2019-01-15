@@ -5,15 +5,26 @@
  */
 
 /**
- * Jacob L
+ * Jacob
  * 
  */
+
 import java.io.*;
 
 public class wwwCreation extends javax.swing.JFrame {
-
+    
+    // Java Writer/Reader Initialization
+    //Writer
+    File exportCharDoc1 = new File("CharDoc1.www"); //external document
+    FileWriter out;
+    BufferedWriter writeFile; 
+    //Reader
+    File inputFile = new File("scores.dat");
+    FileReader in;
+    BufferedReader readFile;
+    
     /**
-     * Creates new form wwwCreation
+     * Creates new form wwwCreation & enables functionality to the buttons
      */
     public wwwCreation() {
         initComponents();
@@ -69,7 +80,7 @@ public class wwwCreation extends javax.swing.JFrame {
         instructionsTextArea.setFont(new java.awt.Font("Tekton Pro Ext", 0, 14)); // NOI18N
         instructionsTextArea.setRows(5);
         instructionsTextArea.setTabSize(7);
-        instructionsTextArea.setText("Click \"Clear\". Input your character's\nname, then click \"Start\". Your\ncharacter will be developed in the\nattached file \"CharDoc1\".");
+        instructionsTextArea.setText("Click \"Clear\". Input your character's\nname, then click \"Start\". Your\ncharacter will be displayed in the\nattached file \"CharDoc1\".");
         instructionsScollPane.setViewportView(instructionsTextArea);
 
         startButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
