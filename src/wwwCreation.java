@@ -10,11 +10,14 @@
  * Creates a character for a role-playing game w/ little user input
  */
 
+//for reader/writer
 import java.io.*;
+//for dice rolls
+import java.util.Random;
 
 public class wwwCreation extends javax.swing.JFrame {
     
-    // Java Writer/Reader Initialization
+    // Java Initialization
     //Writer
     File exportCharDoc1 = new File("CharDoc1.www"); //external document
     FileWriter out;
@@ -23,6 +26,12 @@ public class wwwCreation extends javax.swing.JFrame {
     File inputOriginDoc = new File("OriginDoc.www");
     FileReader in;
     BufferedReader readFile;
+    //Random
+    Random diceRoll = new Random();
+    
+    // Global Variable/Constant Initialization
+    String charName; //character name
+    int health; //their max health
     
     /**
      * Creates new form wwwCreation & enables functionality to the buttons
@@ -169,7 +178,8 @@ public class wwwCreation extends javax.swing.JFrame {
 
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
         // CALCULATING / FETCHING CHARACTER INFORMATION
-        String charName = characterNameInput.getText(); //get's information from the GUI
+        charName = characterNameInput.getText(); //get's information from the GUI
+        //System.out.println(charName); //testing
         
     }//GEN-LAST:event_startButtonActionPerformed
 
@@ -234,6 +244,8 @@ public class wwwCreation extends javax.swing.JFrame {
         }
 
     }
+    
+    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel backgroundPanel;
