@@ -245,7 +245,16 @@ public class wwwCreation extends javax.swing.JFrame {
 
     }
     
-    
+    /**
+     * Clears the previous information on CharDoc1
+     * @param out
+     * @param exportCharDoc1 ~ Alters CharDoc1 with the writer
+     * @param writeFile
+     */
+    public static void healthRolling(FileWriter out, File exportCharDoc1, BufferedWriter writeFile) {
+        
+
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel backgroundPanel;
