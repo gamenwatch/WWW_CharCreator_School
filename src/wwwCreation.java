@@ -6,7 +6,8 @@
 
 /**
  * Jacob
- * 
+ * Jan 14-?, 2019
+ * Creates a character for a role-playing game w/ little user input
  */
 
 import java.io.*;
@@ -19,7 +20,7 @@ public class wwwCreation extends javax.swing.JFrame {
     FileWriter out;
     BufferedWriter writeFile; 
     //Reader
-    File inputFile = new File("scores.dat");
+    File inputOriginDoc = new File("OriginDoc.www");
     FileReader in;
     BufferedReader readFile;
     
@@ -157,8 +158,8 @@ public class wwwCreation extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void newButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newButtonActionPerformed
-        // TODO add your handling code here:
-        
+        // Clear CharDoc1
+        clearDocument(out,exportCharDoc1,writeFile);
     }//GEN-LAST:event_newButtonActionPerformed
 
     private void characterNameInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_characterNameInputActionPerformed
@@ -204,6 +205,33 @@ public class wwwCreation extends javax.swing.JFrame {
         });
     }
 
+    /**
+     * Takes information from the GUI, and stores it in the external document
+     * @param out
+     * @param exportCharDoc1
+     * @param writeFile
+     */
+    public static void clearDocument(FileWriter out, File exportCharDoc1, BufferedWriter writeFile) {
+        try {
+            //file writer
+            out = new FileWriter(exportCharDoc1, true);
+            writeFile = new BufferedWriter(out);
+
+            //Clear all previous information
+            writeFile.write("");
+            
+            //Close
+            writeFile.close();
+            out.close();
+            System.out.println("Data written to file has been cleared."); //For testing, console mesage
+
+        } catch (IOException e) {
+            System.out.println("Problem cleaning file.");
+            System.err.println("IOException: " + e.getMessage());
+        }
+
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel backgroundPanel;
     private javax.swing.JTextField characterNameInput;
