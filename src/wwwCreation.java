@@ -160,6 +160,7 @@ public class wwwCreation extends javax.swing.JFrame {
     private void newButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newButtonActionPerformed
         // Clear CharDoc1
         clearDocument(out,exportCharDoc1,writeFile);
+        System.out.println("Clear Button actions completed"); //for testing
     }//GEN-LAST:event_newButtonActionPerformed
 
     private void characterNameInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_characterNameInputActionPerformed
@@ -167,7 +168,9 @@ public class wwwCreation extends javax.swing.JFrame {
     }//GEN-LAST:event_characterNameInputActionPerformed
 
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
-        // TODO add your handling code here:
+        // CALCULATING / FETCHING CHARACTER INFORMATION
+        String charName = characterNameInput.getText(); //get's information from the GUI
+        
     }//GEN-LAST:event_startButtonActionPerformed
 
     /**
@@ -206,19 +209,19 @@ public class wwwCreation extends javax.swing.JFrame {
     }
 
     /**
-     * Takes information from the GUI, and stores it in the external document
+     * Clears the previous information on CharDoc1
      * @param out
-     * @param exportCharDoc1
+     * @param exportCharDoc1 ~ Alters CharDoc1 with the writer
      * @param writeFile
      */
     public static void clearDocument(FileWriter out, File exportCharDoc1, BufferedWriter writeFile) {
         try {
             //file writer
-            out = new FileWriter(exportCharDoc1, true);
+            out = new FileWriter(exportCharDoc1); //, true makes it add to the end of the line instead of overwriting it
             writeFile = new BufferedWriter(out);
 
             //Clear all previous information
-            writeFile.write("dank");
+            writeFile.write("");
             
             //Close
             writeFile.close();
