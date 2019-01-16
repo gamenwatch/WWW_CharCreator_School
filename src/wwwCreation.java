@@ -34,6 +34,15 @@ public class wwwCreation extends javax.swing.JFrame {
     int charHealth; //their max health
     final int HEALTH_BASE = 70; //minimum health
     final int HEALTH_ROLL = 60; //max that can be rolled to add to the previous
+    int charAura; //their max health
+    final int AURA_BASE = 900; //minimum health
+    final int AURA_ROLL = 10-200; //max that can be rolled to add to the previous
+    
+    // Array Initialization
+    String []statName = new String [11];
+    //statName[0] = "Je";
+    
+    //int []statValue
     
     /**
      * Creates new form wwwCreation & enables functionality to the buttons
@@ -180,8 +189,14 @@ public class wwwCreation extends javax.swing.JFrame {
 
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
         // CALCULATING / FETCHING CHARACTER INFORMATION
+        //name
         charName = characterNameInput.getText(); //get's information from the GUI
-        //System.out.println(charName); //testing
+        
+        //health
+        charHealth = healthRolling(HEALTH_BASE, HEALTH_ROLL, charHealth); // calculates health and outputs
+        
+        //aura
+        charAura = auraRolling(AURA_BASE, AURA_ROLL, charAura); // calculates aura and outputs
         
     }//GEN-LAST:event_startButtonActionPerformed
 
@@ -259,6 +274,20 @@ public class wwwCreation extends javax.swing.JFrame {
         charHealth = (diceRoll.nextInt(HEALTH_ROLL)+1) + charHealth; //70+(1-60)
         
         return charHealth;
+    }
+    
+    /**
+     * Calculates and outputs the characters total aura
+     * @param AURA_BASE ~ Minimum aura added to the rolled #
+     * @param AURA_ROLL ~ Max roll added to the min aura
+     * @param charAura ~ the characters total aura (calculated from the 2 above)
+     * @return charAura ~ returned and saved so it can be written to another file later
+     */
+    public int auraRolling(final int AURA_BASE, final int AURA_ROLL, int charAura) {
+        charAura = AURA_BASE; // =900
+        charAura = (diceRoll.nextInt(AURA_ROLL)+1) + charAura; //70+(10-200)
+        
+        return charAura;
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
