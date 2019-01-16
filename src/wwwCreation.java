@@ -226,7 +226,7 @@ public class wwwCreation extends javax.swing.JFrame {
      * @param exportCharDoc1 ~ Alters CharDoc1 with the writer
      * @param writeFile
      */
-    public static void clearDocument(FileWriter out, File exportCharDoc1, BufferedWriter writeFile) {
+    public void clearDocument(FileWriter out, File exportCharDoc1, BufferedWriter writeFile) {
         try {
             //file writer
             out = new FileWriter(exportCharDoc1); //, true makes it add to the end of the line instead of overwriting it
@@ -248,16 +248,17 @@ public class wwwCreation extends javax.swing.JFrame {
     }
     
     /**
-     * Clears the previous information on CharDoc1
-     * @param out
-     * @param exportCharDoc1 ~ Alters CharDoc1 with the writer
-     * @param writeFile
+     * Calculates and outputs the characters total health
      * @param HEALTH_BASE ~ Minimum health added to the rolled #
      * @param HEALTH_ROLL ~ Max roll added to the min health
+     * @param charHealth ~ the characters total health (calculated from the 2 above)
+     * @return charHealth ~ returned and saved so it can be written to another file later
      */
-    public static void healthRolling(FileWriter out, File exportCharDoc1, BufferedWriter writeFile, final int HEALTH_BASE, final int HEALTH_ROLL) {
+    public int healthRolling(final int HEALTH_BASE, final int HEALTH_ROLL, int charHealth) {
+        charHealth = HEALTH_BASE; // =70
+        charHealth = (diceRoll.nextInt(HEALTH_ROLL)+1) + charHealth; //70+(1-60)
         
-
+        return charHealth;
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
