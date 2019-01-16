@@ -39,9 +39,9 @@ public class wwwCreation extends javax.swing.JFrame {
     final int AURA_ROLL = 10-200; //max that can be rolled to add to the previous
     
     // Array Initialization
-    String []statName = new String [11];
-    //statName[0] = "Je";
-    
+    //All stat names
+    String[] statName = {"Reflex: ","DADA: ","Potions: ","Herbology: ","CI: ","Intelligence: ","Strength: ","Darkness: ","Muggle Understanding: ","Charisma: ","Transfiguration: "};
+    //Stat values (filled in later)
     //int []statValue
     
     /**
