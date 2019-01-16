@@ -36,7 +36,7 @@ public class wwwCreation extends javax.swing.JFrame {
     final int HEALTH_ROLL = 60; //max that can be rolled to add to the previous
     int charAura = 0; //their max health + clear previous
     final int AURA_BASE = 900; //minimum health
-    final int AURA_ROLL = 10-200; //max that can be rolled to add to the previous
+    final int AURA_ROLL = 200; //max that can be rolled to add to the previous
     
     // Array Initialization
     //All stat names
@@ -192,11 +192,13 @@ public class wwwCreation extends javax.swing.JFrame {
         //name
         charName = characterNameInput.getText(); //get's information from the GUI
         //health
-        charHealth = healthRolling(HEALTH_BASE, HEALTH_ROLL, charHealth); // calculates health and outputs
+        charHealth = healthRolling(HEALTH_BASE, HEALTH_ROLL, charHealth,diceRoll); // calculates health and outputs
+        System.out.println(charHealth);//testing
         //aura
-        charAura = auraRolling(AURA_BASE, AURA_ROLL, charAura); // calculates aura and outputs
+        charAura = auraRolling(AURA_BASE, AURA_ROLL, charAura, diceRoll); // calculates aura and outputs
+        System.out.println(charAura);//testing
         //the d10 stats
-        
+        statValue = dTenStatRoll(statValue, diceRoll);
         
     }//GEN-LAST:event_startButtonActionPerformed
 
@@ -234,7 +236,7 @@ public class wwwCreation extends javax.swing.JFrame {
             }
         });
     }
-
+///////////////////////////////METHODS///////////////////////////////////////////////
     /**
      * Clears the previous information on CharDoc1
      * @param out
@@ -267,9 +269,10 @@ public class wwwCreation extends javax.swing.JFrame {
      * @param HEALTH_BASE ~ Minimum health added to the rolled #
      * @param HEALTH_ROLL ~ Max roll added to the min health
      * @param charHealth ~ the characters total health (calculated from the 2 above)
+     * @param diceRoll ~ rolls a dice
      * @return charHealth ~ returned and saved so it can be written to another file later
      */
-    public int healthRolling(final int HEALTH_BASE, final int HEALTH_ROLL, int charHealth) {
+    public int healthRolling(final int HEALTH_BASE, final int HEALTH_ROLL, int charHealth, Random diceRoll) {
         charHealth = HEALTH_BASE; // =70
         charHealth = (diceRoll.nextInt(HEALTH_ROLL)+1) + charHealth; //70+(1-60)
         
@@ -281,9 +284,10 @@ public class wwwCreation extends javax.swing.JFrame {
      * @param AURA_BASE ~ Minimum aura added to the rolled #
      * @param AURA_ROLL ~ Max roll added to the min aura
      * @param charAura ~ the characters total aura (calculated from the 2 above)
+     * @param diceRoll ~ rolls a dice
      * @return charAura ~ returned and saved so it can be written to another file later
      */
-    public int auraRolling(final int AURA_BASE, final int AURA_ROLL, int charAura) {
+    public int auraRolling(final int AURA_BASE, final int AURA_ROLL, int charAura, Random diceRoll) {
         charAura = AURA_BASE; // =900
         charAura = (diceRoll.nextInt(AURA_ROLL)+1) + charAura; //70+(10-200)
         
@@ -293,9 +297,10 @@ public class wwwCreation extends javax.swing.JFrame {
      /**
      * Rolls the d2 dice the requested number of times
      * @param statValue ~ The max for a d2 dice
+     * @param diceRoll ~ rolls a dice
      * @return statValue ~ The sum of all the rolls
      */
-    public int[] dTenStatRoll(int []statValue) {
+    public int[] dTenStatRoll(int []statValue, Random diceRoll) {
 
         for (int i = 0; i < 11; i = i+1) // ROLL THE DICE
         {
