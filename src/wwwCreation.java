@@ -31,7 +31,9 @@ public class wwwCreation extends javax.swing.JFrame {
     
     // Global Variable/Constant Initialization
     String charName; //character name
-    int health; //their max health
+    int charHealth; //their max health
+    final int HEALTH_BASE = 70; //minimum health
+    final int HEALTH_ROLL = 60; //max that can be rolled to add to the previous
     
     /**
      * Creates new form wwwCreation & enables functionality to the buttons
@@ -250,8 +252,10 @@ public class wwwCreation extends javax.swing.JFrame {
      * @param out
      * @param exportCharDoc1 ~ Alters CharDoc1 with the writer
      * @param writeFile
+     * @param HEALTH_BASE ~ Minimum health added to the rolled #
+     * @param HEALTH_ROLL ~ Max roll added to the min health
      */
-    public static void healthRolling(FileWriter out, File exportCharDoc1, BufferedWriter writeFile) {
+    public static void healthRolling(FileWriter out, File exportCharDoc1, BufferedWriter writeFile, final int HEALTH_BASE, final int HEALTH_ROLL) {
         
 
     }
