@@ -31,18 +31,18 @@ public class wwwCreation extends javax.swing.JFrame {
     
     // Global Variable/Constant Initialization
     String charName; //character name
-    int charHealth; //their max health
+    int charHealth = 0; //their max health + clear previous
     final int HEALTH_BASE = 70; //minimum health
     final int HEALTH_ROLL = 60; //max that can be rolled to add to the previous
-    int charAura; //their max health
+    int charAura = 0; //their max health + clear previous
     final int AURA_BASE = 900; //minimum health
     final int AURA_ROLL = 10-200; //max that can be rolled to add to the previous
     
     // Array Initialization
     //All stat names
-    String[] statName = {"Reflex: ","DADA: ","Potions: ","Herbology: ","CI: ","Intelligence: ","Strength: ","Darkness: ","Muggle Understanding: ","Charisma: ","Transfiguration: "};
+    final String[] statName = {"Reflex: ","DADA: ","Potions: ","Herbology: ","CI: ","Intelligence: ","Strength: ","Darkness: ","Muggle Understanding: ","Charisma: ","Transfiguration: "};
     //Stat values (filled in later)
-    //int []statValue
+    int []statValue = new int [11];
     
     /**
      * Creates new form wwwCreation & enables functionality to the buttons
@@ -191,12 +191,12 @@ public class wwwCreation extends javax.swing.JFrame {
         // CALCULATING / FETCHING CHARACTER INFORMATION
         //name
         charName = characterNameInput.getText(); //get's information from the GUI
-        
         //health
         charHealth = healthRolling(HEALTH_BASE, HEALTH_ROLL, charHealth); // calculates health and outputs
-        
         //aura
         charAura = auraRolling(AURA_BASE, AURA_ROLL, charAura); // calculates aura and outputs
+        //the d10 stats
+        
         
     }//GEN-LAST:event_startButtonActionPerformed
 
@@ -288,6 +288,24 @@ public class wwwCreation extends javax.swing.JFrame {
         charAura = (diceRoll.nextInt(AURA_ROLL)+1) + charAura; //70+(10-200)
         
         return charAura;
+    }
+    
+     /**
+     * Rolls the d2 dice the requested number of times
+     * @param statValue ~ The max for a d2 dice
+     * @return statValue ~ The sum of all the rolls
+     */
+    public int[] dTenStatRoll(int []statValue) {
+
+        for (int i = 0; i < 11; i = i+1) // ROLL THE DICE
+        {
+           statValue[i] = 0; //clear the previous
+           statValue[i] = 1 + diceRoll.nextInt(10);
+           System.out.println("Roll:"+statValue[i]); //displayed for tetsing
+        }
+
+        return statValue;
+                
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
