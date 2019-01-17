@@ -351,6 +351,34 @@ public class wwwCreation extends javax.swing.JFrame {
         return charHouse;
     }
     
+//    /**
+//     * Calculates and outputs the characters total aura
+//     * @param charHouse ~ What HP house the char is part of
+//     * @param diceRoll ~ rolls a dice
+//     * @param diceResult ~ placeholder for a dice roll
+//     * @return charHouse ~ What HP house the char is part of
+//     */
+//    public String houseStatUpdate(String charHouse, int diceResult, Random diceRoll) {
+//        diceResult = (diceRoll.nextInt(4)+1); //4 houses
+//        switch (diceResult) {
+//            
+//            case 1:
+//                charHouse = "Griffindor"; //gives +1 DADA & Reflex
+//                break;
+//            case 2:
+//                charHouse = "Slytherin"; //gives +1 Potions & Darkness
+//                break; 
+//            case 3:
+//                charHouse = "Ravenclaw"; //gives +1 Intelligence & Transfiguration
+//                break;
+//            case 4:
+//                charHouse = "Hufflepuff"; //gives +1 Charisma & Herbology
+//                break;    
+//        }
+//               
+//        return charHouse;
+//    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel backgroundPanel;
     private javax.swing.JTextField characterNameInput;
