@@ -37,6 +37,8 @@ public class wwwCreation extends javax.swing.JFrame {
     int charAura = 0; //their max health + clear previous
     final int AURA_BASE = 900; //minimum health
     final int AURA_ROLL = 200; //max that can be rolled to add to the previous
+    String charHouse; //the chars house that influences their stats
+    int diceResult; //temp placeholder for dice rolls
     
     // Array Initialization
     //All stat names
@@ -189,8 +191,13 @@ public class wwwCreation extends javax.swing.JFrame {
 
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
         // CALCULATING / FETCHING CHARACTER INFORMATION
+        try {
         //name
         charName = characterNameInput.getText(); //get's information from the GUI
+        } catch (Exception e) {
+            System.out.println("This is not a valid input.");
+            System.err.println("Exception: " + e.getMessage());
+        }
         //health
         charHealth = healthRolling(HEALTH_BASE, HEALTH_ROLL, charHealth,diceRoll); // calculates health and outputs
         System.out.println(charHealth);//testing
@@ -199,6 +206,9 @@ public class wwwCreation extends javax.swing.JFrame {
         System.out.println(charAura);//testing
         //the d10 stats
         statValue = dTenStatRoll(statValue, diceRoll);
+        //house
+        charHouse = houseRolling(charHouse, diceResult, diceRoll);
+        System.out.println("House: "+charHouse);
         
     }//GEN-LAST:event_startButtonActionPerformed
 
@@ -295,10 +305,10 @@ public class wwwCreation extends javax.swing.JFrame {
     }
     
      /**
-     * Rolls the d2 dice the requested number of times
-     * @param statValue ~ The max for a d2 dice
-     * @param diceRoll ~ rolls a dice
-     * @return statValue ~ The sum of all the rolls
+     * Rolls a d10 for each of the 11 stats
+     * @param statValue ~ An array that contains the 11 d10 stats
+     * @param diceRoll ~ Rolls a dice
+     * @return statValue ~ Returns the array with the stats
      */
     public int[] dTenStatRoll(int []statValue, Random diceRoll) {
 
@@ -311,6 +321,34 @@ public class wwwCreation extends javax.swing.JFrame {
 
         return statValue;
                 
+    }
+    
+    /**
+     * Calculates and outputs the characters total aura
+     * @param charHouse ~ What HP house the char is part of
+     * @param diceRoll ~ rolls a dice
+     * @param diceResult ~ placeholder for a dice roll
+     * @return charHouse ~ What HP house the char is part of
+     */
+    public String houseRolling(String charHouse, int diceResult, Random diceRoll) {
+        diceResult = (diceRoll.nextInt(4)+1); //4 houses
+        switch (diceResult) {
+            
+            case 1:
+                charHouse = "Griffindor"; //gives +1 DADA & Reflex
+                break;
+            case 2:
+                charHouse = "Slytherin"; //gives +1 Potions & Darkness
+                break; 
+            case 3:
+                charHouse = "Ravenclaw"; //gives +1 Intelligence & Transfiguration
+                break;
+            case 4:
+                charHouse = "Hufflepuff"; //gives +1 Charisma & Herbology
+                break;    
+        }
+               
+        return charHouse;
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
