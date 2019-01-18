@@ -63,7 +63,7 @@ public class wwwCreation extends javax.swing.JFrame {
     private void initComponents() {
 
         backgroundPanel = new javax.swing.JPanel();
-        newButton = new javax.swing.JButton();
+        clearButton = new javax.swing.JButton();
         characterNameInput = new javax.swing.JTextField();
         titleLabel = new javax.swing.JLabel();
         subtitleLabel = new javax.swing.JLabel();
@@ -76,11 +76,11 @@ public class wwwCreation extends javax.swing.JFrame {
 
         backgroundPanel.setBackground(new java.awt.Color(255, 255, 204));
 
-        newButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        newButton.setText("CLEAR");
-        newButton.addActionListener(new java.awt.event.ActionListener() {
+        clearButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        clearButton.setText("CLEAR");
+        clearButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                newButtonActionPerformed(evt);
+                clearButtonActionPerformed(evt);
             }
         });
 
@@ -134,7 +134,7 @@ public class wwwCreation extends javax.swing.JFrame {
                         .addComponent(subtitleLabel))
                     .addGroup(backgroundPanelLayout.createSequentialGroup()
                         .addGap(211, 211, 211)
-                        .addComponent(newButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(clearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(backgroundPanelLayout.createSequentialGroup()
                         .addGap(210, 210, 210)
                         .addComponent(startButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -151,7 +151,7 @@ public class wwwCreation extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(subtitleLabel)
                 .addGap(18, 18, 18)
-                .addComponent(newButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(clearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(characterNameLabel)
@@ -179,11 +179,11 @@ public class wwwCreation extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void newButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newButtonActionPerformed
+    private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
         // Clear CharDoc1
         clearDocument(out,exportCharDoc1,writeFile);
         System.out.println("Clear Button actions completed"); //for testing
-    }//GEN-LAST:event_newButtonActionPerformed
+    }//GEN-LAST:event_clearButtonActionPerformed
 
     private void characterNameInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_characterNameInputActionPerformed
         // TODO add your handling code here:
@@ -209,7 +209,12 @@ public class wwwCreation extends javax.swing.JFrame {
         //house
         charHouse = houseRolling(charHouse, diceResult, diceRoll);
         System.out.println("House: "+charHouse);
+        //update stats for house
+        houseStatUpdate(charHouse, diceRoll, statValue);
+        //origin
         
+        //export to CharDoc1
+        exportToDoc(charName,charHealth,charAura, charHouse, statName, statValue, out, exportCharDoc1, writeFile);
     }//GEN-LAST:event_startButtonActionPerformed
 
     /**
@@ -308,7 +313,7 @@ public class wwwCreation extends javax.swing.JFrame {
      * Rolls a d10 for each of the 11 stats
      * @param statValue ~ An array that contains the 11 d10 stats
      * @param diceRoll ~ Rolls a dice
-     * @return statValue ~ Returns the array with the stats
+     * @return statValue ~ Return to be exported later
      */
     public int[] dTenStatRoll(int []statValue, Random diceRoll) {
 
@@ -324,68 +329,110 @@ public class wwwCreation extends javax.swing.JFrame {
     }
     
     /**
-     * Calculates and outputs the characters total aura
+     * Rolls a d4 to generate a house for the character
      * @param charHouse ~ What HP house the char is part of
      * @param diceRoll ~ rolls a dice
      * @param diceResult ~ placeholder for a dice roll
-     * @return charHouse ~ What HP house the char is part of
+     * @return charHouse ~ Return to be exported later
      */
     public String houseRolling(String charHouse, int diceResult, Random diceRoll) {
         diceResult = (diceRoll.nextInt(4)+1); //4 houses
         switch (diceResult) {
             
             case 1:
-                charHouse = "Griffindor"; //gives +1 DADA & Reflex
+                charHouse = "Griffindor"; 
                 break;
             case 2:
-                charHouse = "Slytherin"; //gives +1 Potions & Darkness
+                charHouse = "Slytherin"; 
                 break; 
             case 3:
-                charHouse = "Ravenclaw"; //gives +1 Intelligence & Transfiguration
+                charHouse = "Ravenclaw"; 
                 break;
             case 4:
-                charHouse = "Hufflepuff"; //gives +1 Charisma & Herbology
+                charHouse = "Hufflepuff"; 
                 break;    
         }
                
         return charHouse;
     }
     
-//    /**
-//     * Calculates and outputs the characters total aura
-//     * @param charHouse ~ What HP house the char is part of
-//     * @param diceRoll ~ rolls a dice
-//     * @param diceResult ~ placeholder for a dice roll
-//     * @return charHouse ~ What HP house the char is part of
-//     */
-//    public String houseStatUpdate(String charHouse, int diceResult, Random diceRoll) {
-//        diceResult = (diceRoll.nextInt(4)+1); //4 houses
-//        switch (diceResult) {
-//            
-//            case 1:
-//                charHouse = "Griffindor"; //gives +1 DADA & Reflex
-//                break;
-//            case 2:
-//                charHouse = "Slytherin"; //gives +1 Potions & Darkness
-//                break; 
-//            case 3:
-//                charHouse = "Ravenclaw"; //gives +1 Intelligence & Transfiguration
-//                break;
-//            case 4:
-//                charHouse = "Hufflepuff"; //gives +1 Charisma & Herbology
-//                break;    
-//        }
-//               
-//        return charHouse;
-//    }
+    /**
+     * Adjusts the stats array depending on the characters house
+     * @param charHouse ~ What HP house the char is part of
+     * @param diceRoll ~ rolls a dice
+     * @param statValue ~ An array that contains the 11 d10 stats
+     * @return statValue ~ Return to be exported later
+     */
+    public int[] houseStatUpdate(String charHouse, Random diceRoll, int []statValue) {
+        diceResult = (diceRoll.nextInt(4)+1); //4 houses
+        switch (charHouse) {
+            
+            case "Griffindor": //gives +1 DADA & Reflex
+                statValue[1] = statValue[1] + 1; //DADA
+                statValue[0] = statValue[0] + 1; //Reflex
+                break;
+            case "Slytherin": //gives +1 Potions & Darkness
+                statValue[2] = statValue[2] + 1; //Potions
+                statValue[7] = statValue[7] + 1; //Darkness
+                break; 
+            case "Ravenclaw": //gives +1 Intelligence & Transfiguration
+                statValue[5] = statValue[5] + 1; //Intelligence
+                statValue[10] = statValue[10] + 1; //Transfiguration
+                break;
+            case "Hufflepuff": //gives +1 Charisma & Herbology
+                statValue[9] = statValue[9] + 1; //Charisma
+                statValue[3] = statValue[3] + 1; //Herbology
+                break;    
+        }
+               
+        return statValue;
+    }
+    
+    /**
+     * Write all generated information to the external document
+     * @param charName ~ Export their name
+     * @param charHealth ~ Export their health stat
+     * @param charAura ~ Export their aura stat
+     * @param charHouse ~ Export their Harry Potter house
+     * @param statName ~ Export the stats names followed by...
+     * @param statValue ~ their respective values
+     * @param out
+     * @param exportCharDoc1 ~ Alters CharDoc1 with the writer
+     * @param writeFile
+     */
+    public void exportToDoc(String charName,int charHealth,int charAura,String charHouse,String []statName,int []statValue,FileWriter out, File exportCharDoc1, BufferedWriter writeFile) {
+        try {
+            //file writer
+            out = new FileWriter(exportCharDoc1,true);
+            writeFile = new BufferedWriter(out);
+
+            //Write all information to file
+            writeFile.write("Character Name: "+charName);
+            writeFile.newLine();
+            writeFile.write("Health: "+charHealth);
+            writeFile.newLine();
+            writeFile.write("Aura: "+charAura);
+            writeFile.newLine();
+            
+            
+            //Close
+            writeFile.close();
+            out.close();
+            System.out.println("Data written to file has been cleared."); //For testing, console mesage
+
+        } catch (IOException e) {
+            System.out.println("Problem cleaning file.");
+            System.err.println("IOException: " + e.getMessage());
+        }
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel backgroundPanel;
     private javax.swing.JTextField characterNameInput;
     private javax.swing.JLabel characterNameLabel;
+    private javax.swing.JButton clearButton;
     private javax.swing.JScrollPane instructionsScollPane;
     private javax.swing.JTextArea instructionsTextArea;
-    private javax.swing.JButton newButton;
     private javax.swing.JButton startButton;
     private javax.swing.JLabel subtitleLabel;
     private javax.swing.JLabel titleLabel;
