@@ -413,7 +413,13 @@ public class wwwCreation extends javax.swing.JFrame {
             writeFile.newLine();
             writeFile.write("Aura: "+charAura);
             writeFile.newLine();
-            
+            writeFile.write("House: "+charHouse);
+            writeFile.newLine();
+            for (int i = 0; i < 11; i = i+1)
+            {
+                writeFile.write(statName[i]+""+statValue[i]);
+                writeFile.newLine();
+            }
             
             //Close
             writeFile.close();
