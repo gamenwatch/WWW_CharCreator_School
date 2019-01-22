@@ -38,6 +38,8 @@ public class wwwCreation extends javax.swing.JFrame {
     final int AURA_BASE = 900; //minimum health
     final int AURA_ROLL = 200; //max that can be rolled to add to the previous
     String charHouse; //the chars house that influences their stats
+    String charOrigin; //the chars native country that influences roleplaying
+    String charOriginText; //minor description of what wizards from the nation are like
     int diceResult; //temp placeholder for dice rolls
     
     // Array Initialization
@@ -210,8 +212,11 @@ public class wwwCreation extends javax.swing.JFrame {
         charHouse = houseRolling(charHouse, diceResult, diceRoll);
         System.out.println("House: "+charHouse);
         //update stats for house
-        houseStatUpdate(charHouse, diceRoll, statValue);
+        houseStatUpdate(charHouse,statValue);
         //origin
+        originRolling(charOrigin, diceResult, diceRoll);
+        System.out.println("Origin: "+charOrigin);
+    //    originTextUpdate(charOrigin,charOriginText,inputOriginDoc,in,readFile);
         
         //export to CharDoc1
         exportToDoc(charName,charHealth,charAura, charHouse, statName, statValue, out, exportCharDoc1, writeFile);
@@ -359,12 +364,10 @@ public class wwwCreation extends javax.swing.JFrame {
     /**
      * Adjusts the stats array depending on the characters house
      * @param charHouse ~ What HP house the char is part of
-     * @param diceRoll ~ rolls a dice
      * @param statValue ~ An array that contains the 11 d10 stats
      * @return statValue ~ Return to be exported later
      */
-    public int[] houseStatUpdate(String charHouse, Random diceRoll, int []statValue) {
-        diceResult = (diceRoll.nextInt(4)+1); //4 houses
+    public int[] houseStatUpdate(String charHouse,int []statValue) {
         switch (charHouse) {
             
             case "Griffindor": //gives +1 DADA & Reflex
@@ -386,6 +389,76 @@ public class wwwCreation extends javax.swing.JFrame {
         }
                
         return statValue;
+    }
+    
+    /**
+     * Rolls a d6 to generate a country of origin for the character
+     * @param charOrigin ~ What nation the char is from
+     * @param diceRoll ~ rolls a dice
+     * @param diceResult ~ placeholder for a dice roll
+     * @return charOrigin ~ Return to be exported later
+     */
+    public String originRolling(String charOrigin, int diceResult, Random diceRoll) {
+        diceResult = (diceRoll.nextInt(6)+1); //6 houses
+        switch (diceResult) {
+            
+            case 1:
+                charOrigin = "British Isles"; 
+                break;
+            case 2:
+                charOrigin = "North America"; 
+                break; 
+            case 3:
+                charOrigin = "Scandanavia"; 
+                break;
+            case 4:
+                charOrigin = "Southern Americas"; 
+                break; 
+            case 5:
+                charOrigin = "Africa"; 
+                break;
+            case 6:
+                charOrigin = "Asia"; 
+                break;
+        }
+               
+        return charOrigin;
+    }
+    
+    /**
+     * Fetches the information from OriginDoc to be exported later
+     * @param charOrigin ~ Changes what line will be fetched
+     * @param charOriginText ~ information for role-playing purposes
+     * @param in
+     * @param inputOriginDoc ~ Alters CharDoc1 with the writer
+     * @param readFile
+     * @return statValue ~ Return to be exported later
+     */
+    public String originTextUpdate(String charOrigin,String charOriginText,File inputOriginDoc,FileReader in,BufferedReader readFile) {
+        
+        switch (charOrigin) {
+            
+            case "British Isles": 
+
+                break;
+            case "North America": 
+
+                break; 
+            case "Scandanavia":
+ 
+                break;
+            case "Southern Americas": 
+
+                break;  
+            case "Africa": 
+
+                break; 
+            case "Asia": 
+
+                break; 
+        }
+               
+        return charOriginText;
     }
     
     /**
@@ -424,10 +497,10 @@ public class wwwCreation extends javax.swing.JFrame {
             //Close
             writeFile.close();
             out.close();
-            System.out.println("Data written to file has been cleared."); //For testing, console mesage
+            System.out.println("Character Complete."); //For testing, console mesage
 
         } catch (IOException e) {
-            System.out.println("Problem cleaning file.");
+            System.out.println("Problem writing to file.");
             System.err.println("IOException: " + e.getMessage());
         }
     }
