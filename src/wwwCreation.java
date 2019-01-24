@@ -216,7 +216,7 @@ public class wwwCreation extends javax.swing.JFrame {
         //origin
         charOrigin = originRolling(charOrigin, diceResult, diceRoll);
         System.out.println("Origin: "+charOrigin);
-    //    charOriginText = originTextUpdate(charOrigin,charOriginText,inputOriginDoc,in,readFile);
+        charOriginText = originTextUpdate(charOrigin,charOriginText,inputOriginDoc,in,readFile);
         
         //export to CharDoc1
         exportToDoc(charName,charHealth,charAura, charHouse, statName, statValue, out, exportCharDoc1, writeFile,charOrigin);
@@ -438,10 +438,10 @@ public class wwwCreation extends javax.swing.JFrame {
         
         // text exports
         String lineOfText; //get individual lines
-        String []arrayOfText = null; //holds all the lines to have one transfered
+        String []arrayOfText; //holds all the lines to have one transfered
         
         try {
-//            for (int i = 0; i < 11; i = i+1) {
+//            for (int i = 0; i < 11; i = i+1) { //doesn't work
 //                lineOfText = readFile.readLine();
 //                arrayOfText[i] = lineOfText;
 //                System.out.println("Test"+arrayOfText[i]);
@@ -460,27 +460,27 @@ public class wwwCreation extends javax.swing.JFrame {
             System.err.println("IOException: " + e.getMessage());
     	}
         
-        switch (charOrigin) {
-            
-            case "British Isles": 
-                charOriginText = arrayOfText[0];
-                break;
-            case "North America": 
-                charOriginText = arrayOfText[1];
-                break; 
-            case "Scandanavia":
-                charOriginText = arrayOfText[2];
-                break;
-            case "Southern Americas": 
-                charOriginText = arrayOfText[3];
-                break;  
-            case "Africa": 
-                charOriginText = arrayOfText[4];
-                break; 
-            case "Asia": 
-                charOriginText = arrayOfText[5];
-                break; 
-        }
+//        switch (charOrigin) {
+//            
+//            case "British Isles": 
+//                charOriginText = arrayOfText[0];
+//                break;
+//            case "North America": 
+//                charOriginText = arrayOfText[1];
+//                break; 
+//            case "Scandanavia":
+//                charOriginText = arrayOfText[2];
+//                break;
+//            case "Southern Americas": 
+//                charOriginText = arrayOfText[3];
+//                break;  
+//            case "Africa": 
+//                charOriginText = arrayOfText[4];
+//                break; 
+//            case "Asia": 
+//                charOriginText = arrayOfText[5];
+//                break; 
+//        }
                
         return charOriginText;
     }
