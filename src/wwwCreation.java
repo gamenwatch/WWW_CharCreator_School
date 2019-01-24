@@ -217,9 +217,10 @@ public class wwwCreation extends javax.swing.JFrame {
         charOrigin = originRolling(charOrigin, diceResult, diceRoll);
         System.out.println("Origin: "+charOrigin);
         charOriginText = originTextUpdate(charOrigin,charOriginText,inputOriginDoc,in,readFile);
+        System.out.println("Origin Text: "+charOriginText);
         
         //export to CharDoc1
-        exportToDoc(charName,charHealth,charAura, charHouse, statName, statValue, out, exportCharDoc1, writeFile,charOrigin);
+        exportToDoc(charName,charHealth,charAura, charHouse, statName, statValue, out, exportCharDoc1, writeFile,charOrigin,charOriginText);
     }//GEN-LAST:event_startButtonActionPerformed
 
     /**
@@ -436,51 +437,51 @@ public class wwwCreation extends javax.swing.JFrame {
      */
     public String originTextUpdate(String charOrigin,String charOriginText,File inputOriginDoc,FileReader in,BufferedReader readFile) {
         
-        // text exports
-        String lineOfText; //get individual lines
-        String []arrayOfText; //holds all the lines to have one transfered
-        
+        String lineOfText; //holds the lines to be put in the following array
+        String []arrayOfText = new String[6]; //temp holds all the lines untill they can be saved for the export
+        int counter = 0; //for looping
+		
         try {
-//            for (int i = 0; i < 11; i = i+1) { //doesn't work
-//                lineOfText = readFile.readLine();
-//                arrayOfText[i] = lineOfText;
-//                System.out.println("Test"+arrayOfText[i]);
-//            }
+            in = new FileReader(inputOriginDoc);
+            readFile = new BufferedReader(in);
+            
             while ((lineOfText = readFile.readLine()) != null ) {
                 System.out.println(lineOfText);
+                arrayOfText[counter] = lineOfText;
+                System.out.println(arrayOfText[counter]);
+                counter ++;
             }
             readFile.close();
             in.close();
-        }
-        catch (FileNotFoundException e) {
-            System.out.println("OriginDoc1 does not exist or could not be found.");
+        } catch (FileNotFoundException e) {
+            System.out.println("File does not exist or could not be found.");
             System.err.println("FileNotFoundException: " + e.getMessage());
         } catch (IOException e) {
             System.out.println("Problem reading file.");
             System.err.println("IOException: " + e.getMessage());
-    	}
+    	} 
         
-//        switch (charOrigin) {
-//            
-//            case "British Isles": 
-//                charOriginText = arrayOfText[0];
-//                break;
-//            case "North America": 
-//                charOriginText = arrayOfText[1];
-//                break; 
-//            case "Scandanavia":
-//                charOriginText = arrayOfText[2];
-//                break;
-//            case "Southern Americas": 
-//                charOriginText = arrayOfText[3];
-//                break;  
-//            case "Africa": 
-//                charOriginText = arrayOfText[4];
-//                break; 
-//            case "Asia": 
-//                charOriginText = arrayOfText[5];
-//                break; 
-//        }
+        switch (charOrigin) {
+            
+            case "British Isles": 
+                charOriginText = arrayOfText[0];
+                break;
+            case "North America": 
+                charOriginText = arrayOfText[1];
+                break; 
+            case "Scandanavia":
+                charOriginText = arrayOfText[2];
+                break;
+            case "Southern Americas": 
+                charOriginText = arrayOfText[3];
+                break;  
+            case "Africa": 
+                charOriginText = arrayOfText[4];
+                break; 
+            case "Asia": 
+                charOriginText = arrayOfText[5];
+                break; 
+        }
                
         return charOriginText;
     }
@@ -498,7 +499,7 @@ public class wwwCreation extends javax.swing.JFrame {
      * @param exportCharDoc1 ~ Alters CharDoc1 with the writer
      * @param writeFile
      */
-    public void exportToDoc(String charName,int charHealth,int charAura,String charHouse,String []statName,int []statValue,FileWriter out, File exportCharDoc1, BufferedWriter writeFile,String charOrigin) {
+    public void exportToDoc(String charName,int charHealth,int charAura,String charHouse,String []statName,int []statValue,FileWriter out, File exportCharDoc1, BufferedWriter writeFile,String charOrigin,String charOriginText) {
         try {
             //file writer
             out = new FileWriter(exportCharDoc1,true);
@@ -520,6 +521,7 @@ public class wwwCreation extends javax.swing.JFrame {
             }
             writeFile.write("Origin: "+charOrigin);
             writeFile.newLine();
+            writeFile.write(charOriginText);
             
             //Close
             writeFile.close();
