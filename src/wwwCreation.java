@@ -214,12 +214,12 @@ public class wwwCreation extends javax.swing.JFrame {
         //update stats for house
         houseStatUpdate(charHouse,statValue);
         //origin
-        originRolling(charOrigin, diceResult, diceRoll);
+        charOrigin = originRolling(charOrigin, diceResult, diceRoll);
         System.out.println("Origin: "+charOrigin);
-    //    originTextUpdate(charOrigin,charOriginText,inputOriginDoc,in,readFile);
+    //    charOriginText = originTextUpdate(charOrigin,charOriginText,inputOriginDoc,in,readFile);
         
         //export to CharDoc1
-        exportToDoc(charName,charHealth,charAura, charHouse, statName, statValue, out, exportCharDoc1, writeFile);
+        exportToDoc(charName,charHealth,charAura, charHouse, statName, statValue, out, exportCharDoc1, writeFile,charOrigin);
     }//GEN-LAST:event_startButtonActionPerformed
 
     /**
@@ -436,25 +436,49 @@ public class wwwCreation extends javax.swing.JFrame {
      */
     public String originTextUpdate(String charOrigin,String charOriginText,File inputOriginDoc,FileReader in,BufferedReader readFile) {
         
+        // text exports
+        String lineOfText; //get individual lines
+        String []arrayOfText = null; //holds all the lines to have one transfered
+        
+        try {
+//            for (int i = 0; i < 11; i = i+1) {
+//                lineOfText = readFile.readLine();
+//                arrayOfText[i] = lineOfText;
+//                System.out.println("Test"+arrayOfText[i]);
+//            }
+            while ((lineOfText = readFile.readLine()) != null ) {
+                System.out.println(lineOfText);
+            }
+            readFile.close();
+            in.close();
+        }
+        catch (FileNotFoundException e) {
+            System.out.println("OriginDoc1 does not exist or could not be found.");
+            System.err.println("FileNotFoundException: " + e.getMessage());
+        } catch (IOException e) {
+            System.out.println("Problem reading file.");
+            System.err.println("IOException: " + e.getMessage());
+    	}
+        
         switch (charOrigin) {
             
             case "British Isles": 
-
+                charOriginText = arrayOfText[0];
                 break;
             case "North America": 
-
+                charOriginText = arrayOfText[1];
                 break; 
             case "Scandanavia":
- 
+                charOriginText = arrayOfText[2];
                 break;
             case "Southern Americas": 
-
+                charOriginText = arrayOfText[3];
                 break;  
             case "Africa": 
-
+                charOriginText = arrayOfText[4];
                 break; 
             case "Asia": 
-
+                charOriginText = arrayOfText[5];
                 break; 
         }
                
@@ -469,11 +493,12 @@ public class wwwCreation extends javax.swing.JFrame {
      * @param charHouse ~ Export their Harry Potter house
      * @param statName ~ Export the stats names followed by...
      * @param statValue ~ their respective values
+     * @param charOrigin ~ Export their country of origin
      * @param out
      * @param exportCharDoc1 ~ Alters CharDoc1 with the writer
      * @param writeFile
      */
-    public void exportToDoc(String charName,int charHealth,int charAura,String charHouse,String []statName,int []statValue,FileWriter out, File exportCharDoc1, BufferedWriter writeFile) {
+    public void exportToDoc(String charName,int charHealth,int charAura,String charHouse,String []statName,int []statValue,FileWriter out, File exportCharDoc1, BufferedWriter writeFile,String charOrigin) {
         try {
             //file writer
             out = new FileWriter(exportCharDoc1,true);
@@ -493,6 +518,8 @@ public class wwwCreation extends javax.swing.JFrame {
                 writeFile.write(statName[i]+""+statValue[i]);
                 writeFile.newLine();
             }
+            writeFile.write("Origin: "+charOrigin);
+            writeFile.newLine();
             
             //Close
             writeFile.close();
