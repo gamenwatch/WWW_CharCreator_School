@@ -6,7 +6,7 @@
 
 /**
  * Jacob
- * Jan 14-?, 2019
+ * Jan 14-24, 2019
  * Creates a character for a role-playing game w/ little user input
  */
 
